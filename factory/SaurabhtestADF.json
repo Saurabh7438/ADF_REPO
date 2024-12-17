@@ -1,0 +1,9 @@
+{
+	"name": "SaurabhtestADF",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d898ba5f-1227-4e37-91ac-456a0fe6c79b",
+		"tenantId": "99e81a93-2b3f-4c0b-9090-e380144c2a6b"
+	}
+}

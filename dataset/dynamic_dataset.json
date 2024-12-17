@@ -1,0 +1,34 @@
+{
+	"name": "dynamic_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobSource",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FOLDER": {
+				"type": "string"
+			},
+			"FILE": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().FILE",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().FOLDER",
+					"type": "Expression"
+				},
+				"container": "test-container"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

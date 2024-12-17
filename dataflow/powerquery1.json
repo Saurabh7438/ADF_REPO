@@ -1,0 +1,20 @@
+{
+	"name": "powerquery1",
+	"properties": {
+		"type": "WranglingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "empfile",
+					"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> empfile",
+					"dataset": {
+						"referenceName": "empfile",
+						"type": "DatasetReference"
+					}
+				}
+			],
+			"script": "section Section1;\r\nshared empfile = let AdfDoc = AzureStorage.BlobContents(\"https://saurabhteststorage.blob.core.windows.net/test-container/input/employee table BI.csv\"),Csv = Csv.Document(AdfDoc, [Delimiter = \",\", Encoding = TextEncoding.Utf8, QuoteStyle = QuoteStyle.Csv]), PromotedHeaders = Table.PromoteHeaders(Csv, [PromoteAllScalars = true]) in  PromotedHeaders;\r\nshared UserQuery = let Source = #\"empfile\",\r\n  #\"Removed columns\" = Table.RemoveColumns(Source, {\"phone_number\"}),\r\n  #\"Filtered rows\" = Table.SelectRows(#\"Removed columns\", each ([department_id] = \"100\")) in #\"Filtered rows\";\r\n",
+			"documentLocale": "en-us"
+		}
+	}
+}

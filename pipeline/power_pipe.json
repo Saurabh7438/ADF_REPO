@@ -1,0 +1,48 @@
+{
+	"name": "power_pipe",
+	"properties": {
+		"activities": [
+			{
+				"name": "Power Query1",
+				"type": "ExecuteWranglingDataflow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "powerquery1",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 32,
+						"computeType": "General"
+					},
+					"queries": [
+						{
+							"queryName": "UserQuery",
+							"dataflowSinks": [
+								{
+									"name": "UserQuerytargetfile",
+									"dataset": {
+										"referenceName": "targetfile",
+										"type": "DatasetReference"
+									},
+									"script": "sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\tmapColumn(\n\t\temployee_id,\n\t\tfirst_name,\n\t\tlast_name,\n\t\temail,\n\t\thire_date,\n\t\tjob_id,\n\t\tsalary,\n\t\tcommission_pct,\n\t\tmanager_id,\n\t\tdepartment_id\n\t)) ~> UserQuerytargetfile"
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-12-17T06:16:33Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
