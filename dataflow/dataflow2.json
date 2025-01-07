@@ -1,0 +1,76 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "empfile",
+						"type": "DatasetReference"
+					},
+					"name": "empfile"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "mysqldbfolder",
+						"type": "DatasetReference"
+					},
+					"name": "mysqlfolder"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          employee_id as string,",
+				"          first_name as string,",
+				"          last_name as string,",
+				"          email as string,",
+				"          phone_number as string,",
+				"          hire_date as string,",
+				"          job_id as string,",
+				"          salary as string,",
+				"          commission_pct as string,",
+				"          manager_id as string,",
+				"          department_id as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> empfile",
+				"empfile sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Column_1 as string,",
+				"          Column_2 as string,",
+				"          Column_3 as string,",
+				"          Column_4 as string,",
+				"          Column_5 as string,",
+				"          Column_6 as string,",
+				"          Column_7 as string,",
+				"          Column_8 as string,",
+				"          Column_9 as string,",
+				"          Column_10 as string,",
+				"          Column_11 as string",
+				"     ),",
+				"     partitionFileNames:['employee_table'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          employee_id,",
+				"          first_name,",
+				"          last_name,",
+				"          email,",
+				"          hire_date,",
+				"          job_id,",
+				"          salary,",
+				"          commission_pct,",
+				"          manager_id,",
+				"          department_id",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> mysqlfolder"
+			]
+		}
+	}
+}

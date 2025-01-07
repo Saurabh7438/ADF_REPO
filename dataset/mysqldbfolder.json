@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "mysqldbfolder",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobSource",
@@ -15,10 +15,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": {
-					"value": "@dataset().filename",
-					"type": "Expression"
-				},
 				"folderPath": "Mysqldb",
 				"container": "test-container"
 			},

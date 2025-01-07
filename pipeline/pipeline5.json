@@ -47,7 +47,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText1",
+						"referenceName": "mysqldbfolder",
 						"type": "DatasetReference",
 						"parameters": {
 							"filename": "sampletabledata"
