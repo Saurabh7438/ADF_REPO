@@ -1,0 +1,48 @@
+{
+	"name": "source_file",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobSource",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "transactions.csv",
+				"container": "sqldbcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "Details",
+				"type": "String"
+			},
+			{
+				"name": "Ref No./Cheque No",
+				"type": "String"
+			},
+			{
+				"name": "Debit",
+				"type": "String"
+			},
+			{
+				"name": "Credit",
+				"type": "String"
+			},
+			{
+				"name": "Balance",
+				"type": "String"
+			}
+		]
+	}
+}
