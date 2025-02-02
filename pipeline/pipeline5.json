@@ -47,7 +47,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "mysqldbfolder",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference",
 						"parameters": {
 							"filename": "sampletabledata"
@@ -56,6 +56,8 @@
 				]
 			}
 		],
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2025-01-07T11:35:05Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }
